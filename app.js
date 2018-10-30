@@ -18,9 +18,27 @@ $(document).ready(function(){
     return formData;
   }
 
+  function insertNewRecord(data) {
+    var table = $('tbody')[0];
+    var newRow = table.insertRow(table.length);
+    cell1 = newRow.insertCell(0);
+    cell2 = newRow.insertCell(1);
+    cell3 = newRow.insertCell(2);
+    cell4 = newRow.insertCell(3);
+    cell5 = newRow.insertCell(4);
+    cell6 = newRow.insertCell(5);
+    cell1.innerHTML = data.itemName;
+    cell2.innerHTML = data.sku;
+    cell3.innerHTML = data.department;
+    cell4.innerHTML = data.quantity;
+    cell5.innerHTML = data.dateReceived; 
+    cell6.innerHTML = `<button id="edit">Edit</button><button id="delete">Delete</button>`;
+}
+
   $(".add-item").on("click", function(){
     var formData = readFormData();
     console.log(formData);
+    insertNewRecord(formData);
     
   });
 

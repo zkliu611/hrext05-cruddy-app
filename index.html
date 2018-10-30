@@ -7,9 +7,62 @@
     <link rel="stylesheet" href="app.css">
   </head>
   <body>
-    <input type="text" class="text-input" id="theKey" placeholder="Enter some text">
+
+      <form class="input-form">
+    
+          <div>
+              <label>Item Name</label>
+              <input type="text" id="item-name" placeholder="Enter Item Name">
+          </div>
+
+          <div>
+              <label>Item SKU</label>
+              <input type="text" id="sku" placeholder="Enter SKU #">
+          </div>
+                    
+          <div>
+              <label>Department</label>
+              <input type="text" id="department" placeholder="Enter Department">
+          </div>
+                    
+          <div>
+              <label>Quantity</label>
+              <input type="text" id="item-quantity" placeholder="Enter Quantity">
+          </div>
+
+          <div>
+              <label>Date Received</label>
+              <input type="text" id="date-received" placeholder="Enter DD/MM/YYYY">
+          </div>
+
+      </form>
+
+      <button class="add-item">Add To Inventory</button>
+
+    
+      <table class="list" id="item-ist">
+          <thead>
+              <tr>
+                  <th>Item Name</th>
+                  <th>Item SKU</th>
+                  <th>Department</th>
+                  <th>Quantity</th>
+                  <th>Date Received</th>
+              </tr>
+          </thead>
+
+          <tbody>
+
+          </tbody>
+
+      </table>
+    
+
+
+
+    <!-- <input type="text" class="text-input" id="theKey" placeholder="Enter some text">
     <button class="add-text-btn">Add text</button>
     <button class="clear-cache-btn">Clear Entries</button>
-    <div class="show-text"></div>
+    <div class="show-text"></div> -->
   </body>
 </html>

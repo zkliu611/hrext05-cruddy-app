@@ -33,13 +33,29 @@ $(document).ready(function(){
     cell4.innerHTML = data.quantity;
     cell5.innerHTML = data.dateReceived; 
     cell6.innerHTML = `<button id="edit">Edit</button><button id="delete">Delete</button>`;
-}
+  }
+
+  function resetForm() {
+    $("#item-name").val("")
+    $("#sku").val("");
+    $("#department").val("");
+    $("#item-quantity").val("");
+    $("#date-received").val("");
+  }
 
   $(".add-item").on("click", function(){
     var formData = readFormData();
     console.log(formData);
     insertNewRecord(formData);
-    
+    resetForm();
+  });
+
+  $("tbody").on("click", "#edit", function(){
+    console.log("this is working")
+  });
+
+  $("tbody").on("click", "#delete", function(){
+    console.log("this is working")
   });
 
 

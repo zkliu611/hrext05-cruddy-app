@@ -1,10 +1,4 @@
-/*
-listen for click event (edit)
-update text in local storage (with key)
-update display with new text value
 
-
- */
 
 $(document).ready(function(){
 
@@ -20,7 +14,7 @@ $(document).ready(function(){
     return formData;
   }
 
-  function insertNew(data) {
+  function insertNewRow(data) {
     var table = $('tbody')[0];
     var newRow = table.insertRow(table.length);
     cell1 = newRow.insertCell(0);
@@ -34,7 +28,7 @@ $(document).ready(function(){
     cell3.innerHTML = data.department;
     cell4.innerHTML = data.quantity;
     cell5.innerHTML = data.dateReceived; 
-    cell6.innerHTML = `<button id="edit">Edit</button><button id="delete">Delete</button>`;
+    cell6.innerHTML = '<button id="edit">Edit</button><button id="delete">Delete</button>';
   }
 
   function updateRow(data){
@@ -43,7 +37,6 @@ $(document).ready(function(){
     selectedRow.cells[2].innerHTML = data.department;
     selectedRow.cells[3].innerHTML = data.quantity;
     selectedRow.cells[4].innerHTML = data.dateReceived;
-
   }
 
   function resetForm() {
@@ -55,7 +48,7 @@ $(document).ready(function(){
     selectedRow = null;
   }
 
-  function onEdit(row) {
+  function editRow(row) {
     selectedRow = row.parentElement.parentElement;
     console.log(selectedRow)
     $("#item-name").val(selectedRow.cells[0].innerHTML);
@@ -63,13 +56,22 @@ $(document).ready(function(){
     $("#department").val(selectedRow.cells[2].innerHTML);
     $("#item-quantity").val(selectedRow.cells[3].innerHTML);
     $("#date-received").val(selectedRow.cells[4].innerHTML);
-}
+  }
+
+  function deleteRow(row) {
+    if (confirm("Are you sure to delete this?")) {
+        var i = row.parentNode.parentNode.rowIndex;
+        console.log(i)
+        document.getElementById("item-ist").deleteRow(i);
+        resetForm();
+    }
+  }
 
 
   $(".add-item").on("click", function(){
     var formData = readFormData();
     if (selectedRow === null){
-      insertNew(formData);
+      insertNewRow(formData);
     }else{
       updateRow(formData);
     }
@@ -79,11 +81,12 @@ $(document).ready(function(){
   $("tbody").on("click", "#edit", function(){
     console.log("this is working")
     console.log(this)
-    onEdit(this);
+    editRow(this);
   });
 
   $("tbody").on("click", "#delete", function(){
     console.log("this is working")
+    deleteRow(this);
   });
 
 

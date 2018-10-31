@@ -60,13 +60,14 @@ $(document).ready(function(){
 
   function deleteRow(row) {
     if (confirm("Are you sure to delete this?")) {
-        var i = row.parentNode.parentNode.rowIndex;
-        console.log(i)
-        document.getElementById("item-ist").deleteRow(i);
-        resetForm();
+      selectedRow = row.parentElement.parentElement;
+      selectedRow.remove();
+      selectedRow = null;
+      // solution without jquery
+      // var i = row.parentNode.parentNode.rowIndex;
+      // document.getElementById("item-ist").deleteRow(i);
     }
   }
-
 
   $(".add-item").on("click", function(){
     var formData = readFormData();
@@ -79,13 +80,10 @@ $(document).ready(function(){
   });
 
   $("tbody").on("click", "#edit", function(){
-    console.log("this is working")
-    console.log(this)
     editRow(this);
   });
 
   $("tbody").on("click", "#delete", function(){
-    console.log("this is working")
     deleteRow(this);
   });
 

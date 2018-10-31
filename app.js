@@ -8,6 +8,8 @@ update display with new text value
 
 $(document).ready(function(){
 
+  var selectedRow = null;
+
   function readFormData() {
     var formData = {};
     formData["itemName"] = $("#item-name").val();
@@ -18,7 +20,7 @@ $(document).ready(function(){
     return formData;
   }
 
-  function insertNewRecord(data) {
+  function insertNew(data) {
     var table = $('tbody')[0];
     var newRow = table.insertRow(table.length);
     cell1 = newRow.insertCell(0);
@@ -35,23 +37,49 @@ $(document).ready(function(){
     cell6.innerHTML = `<button id="edit">Edit</button><button id="delete">Delete</button>`;
   }
 
+  function updateRow(data){
+    selectedRow.cells[0].innerHTML = data.itemName;
+    selectedRow.cells[1].innerHTML = data.sku;
+    selectedRow.cells[2].innerHTML = data.department;
+    selectedRow.cells[3].innerHTML = data.quantity;
+    selectedRow.cells[4].innerHTML = data.dateReceived;
+
+  }
+
   function resetForm() {
     $("#item-name").val("")
     $("#sku").val("");
     $("#department").val("");
     $("#item-quantity").val("");
     $("#date-received").val("");
+    selectedRow = null;
   }
+
+  function onEdit(row) {
+    selectedRow = row.parentElement.parentElement;
+    console.log(selectedRow)
+    $("#item-name").val(selectedRow.cells[0].innerHTML);
+    $("#sku").val(selectedRow.cells[1].innerHTML);
+    $("#department").val(selectedRow.cells[2].innerHTML);
+    $("#item-quantity").val(selectedRow.cells[3].innerHTML);
+    $("#date-received").val(selectedRow.cells[4].innerHTML);
+}
+
 
   $(".add-item").on("click", function(){
     var formData = readFormData();
-    console.log(formData);
-    insertNewRecord(formData);
+    if (selectedRow === null){
+      insertNew(formData);
+    }else{
+      updateRow(formData);
+    }
     resetForm();
   });
 
   $("tbody").on("click", "#edit", function(){
     console.log("this is working")
+    console.log(this)
+    onEdit(this);
   });
 
   $("tbody").on("click", "#delete", function(){

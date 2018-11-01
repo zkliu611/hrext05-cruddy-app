@@ -2,22 +2,20 @@
 
 $(document).ready(function(){
 
+// load and display data from localstorage
   var dataArray = [];
-
   function loadData(){
     dataArray = JSON.parse(localStorage.inventory);
     for (var i = 0; i < dataArray.length; i++){
       insertNewRow(dataArray[i]);
     }
   }
-
   loadData();
 
   var selectedRow = null;
-
   var index;
 
-  function readFormData() {
+  function readFormData() { // read data input and place it in an object
     var formData = {};
     formData["itemName"] = $("#item-name").val();
     formData["sku"] = $("#sku").val();
@@ -27,7 +25,7 @@ $(document).ready(function(){
     return formData;
   }
 
-  function insertNewRow(data) {
+  function insertNewRow(data) { // create new row in table and insert values from data object
     var table = $("tbody")[0];
     var newRow = table.insertRow(table.length);
     cell1 = newRow.insertCell(0);
@@ -44,7 +42,7 @@ $(document).ready(function(){
     cell6.innerHTML = '<button id="edit">Edit</button><button id="delete">Delete</button>';
   }
 
-  function updateRow(data){
+  function updateRow(data){ //updates the selected row values
     selectedRow.cells[0].innerHTML = data.itemName;
     selectedRow.cells[1].innerHTML = data.sku;
     selectedRow.cells[2].innerHTML = data.department;
@@ -52,7 +50,7 @@ $(document).ready(function(){
     selectedRow.cells[4].innerHTML = data.dateReceived;
   }
 
-  function resetForm() {
+  function resetForm() { // resets the input form after data is read and stored
     $("#item-name").val("")
     $("#sku").val("");
     $("#department").val("");
@@ -61,7 +59,7 @@ $(document).ready(function(){
     selectedRow = null;
   }
 
-  function editRow(row) {
+  function editRow(row) { //puts current row value in input form for edit
     selectedRow = row.parentElement.parentElement;
     $("#item-name").val(selectedRow.cells[0].innerHTML);
     $("#sku").val(selectedRow.cells[1].innerHTML);
@@ -70,38 +68,47 @@ $(document).ready(function(){
     $("#date-received").val(selectedRow.cells[4].innerHTML);
   }
 
-  function deleteRow(row) {
+  function deleteRow(row) { //deletes current row, and remove the data from localstorage
     if (confirm("Are you sure to delete this?")) {
       dataArray = JSON.parse(localStorage.inventory);
       dataArray.splice(index, 1);
       localStorage.setItem("inventory", JSON.stringify(dataArray))
+      //delete row using jquery
       selectedRow = row.parentElement.parentElement;
       selectedRow.remove();
       selectedRow = null;
-      // solution without jquery
+      // delete row without using jquery
       // var i = row.parentNode.parentNode.rowIndex;
       // document.getElementById("item-ist").deleteRow(i);
     }
   }
 
-  $(".add-item").on("click", function(){
+  $(".add-item").on("click", function(){ 
     var formData = readFormData();
+    //for adding new entry
     if (selectedRow === null){
       insertNewRow(formData);
       dataArray = JSON.parse(localStorage.inventory);
       dataArray.push(formData);
       localStorage.setItem("inventory", JSON.stringify(dataArray))
-    }else{
+    }else{ //for editing existing entry 
+      //first remove the data from localstorage, 
       dataArray = JSON.parse(localStorage.inventory);
       dataArray.splice(index, 1);
       localStorage.setItem("inventory", JSON.stringify(dataArray))
+
+      //then updates the row values
       updateRow(formData);
+
+      //place new data back into localstorage
       dataArray = JSON.parse(localStorage.inventory);
       dataArray.push(formData);
       localStorage.setItem("inventory", JSON.stringify(dataArray))
+
+      //refresh page after edit
       location.reload()
     }
-    resetForm();
+    resetForm(); //clear out input form
   });
 
   $("tbody").on("click", "#edit", function(){

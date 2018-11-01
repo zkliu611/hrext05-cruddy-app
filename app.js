@@ -2,6 +2,17 @@
 
 $(document).ready(function(){
 
+  var dataArray = [];
+
+  function loadData(){
+    dataArray = JSON.parse(localStorage.inventory);
+    for (var i = 0; i < dataArray.length; i++){
+      insertNewRow(dataArray[i]);
+    }
+  }
+
+  loadData();
+
   var selectedRow = null;
 
   function readFormData() {
@@ -11,11 +22,12 @@ $(document).ready(function(){
     formData["department"] = $("#department").val();
     formData["quantity"] = $("#item-quantity").val();
     formData["dateReceived"] = $("#date-received").val();
+    console.log(formData)
     return formData;
   }
 
   function insertNewRow(data) {
-    var table = $('tbody')[0];
+    var table = $("tbody")[0];
     var newRow = table.insertRow(table.length);
     cell1 = newRow.insertCell(0);
     cell2 = newRow.insertCell(1);
@@ -50,7 +62,6 @@ $(document).ready(function(){
 
   function editRow(row) {
     selectedRow = row.parentElement.parentElement;
-    console.log(selectedRow)
     $("#item-name").val(selectedRow.cells[0].innerHTML);
     $("#sku").val(selectedRow.cells[1].innerHTML);
     $("#department").val(selectedRow.cells[2].innerHTML);
@@ -73,6 +84,11 @@ $(document).ready(function(){
     var formData = readFormData();
     if (selectedRow === null){
       insertNewRow(formData);
+      console.log(localStorage)
+      dataArray = JSON.parse(localStorage.inventory);
+      dataArray.push(formData);
+      localStorage.setItem("inventory", JSON.stringify(dataArray))
+      console.log(localStorage)
     }else{
       updateRow(formData);
     }

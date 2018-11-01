@@ -22,7 +22,6 @@ $(document).ready(function(){
     formData["department"] = $("#department").val();
     formData["quantity"] = $("#item-quantity").val();
     formData["dateReceived"] = $("#date-received").val();
-    console.log(formData)
     return formData;
   }
 
@@ -84,19 +83,24 @@ $(document).ready(function(){
     var formData = readFormData();
     if (selectedRow === null){
       insertNewRow(formData);
-      console.log(localStorage)
       dataArray = JSON.parse(localStorage.inventory);
       dataArray.push(formData);
       localStorage.setItem("inventory", JSON.stringify(dataArray))
-      console.log(localStorage)
     }else{
       updateRow(formData);
+      dataArray = JSON.parse(localStorage.inventory);
+      dataArray.push(formData);
+      localStorage.setItem("inventory", JSON.stringify(dataArray))
     }
     resetForm();
   });
 
   $("tbody").on("click", "#edit", function(){
     editRow(this);
+    var index = this.parentElement.parentElement.rowIndex - 1;
+    dataArray = JSON.parse(localStorage.inventory);
+    dataArray.splice(index, 1);
+    localStorage.setItem("inventory", JSON.stringify(dataArray))
   });
 
   $("tbody").on("click", "#delete", function(){

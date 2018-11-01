@@ -17,7 +17,6 @@ h2{
   text-align: center;
   padding: 5px;
   margin: 5px;
-  background-color: #f9da7a;
 }
 
 label{
@@ -38,7 +37,6 @@ input[type=text]{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-
 }
 
 .list{
@@ -47,7 +45,6 @@ input[type=text]{
   margin-left: 20%;
   margin-right: 20%;
   padding: 10px;
-
 }
 
 td{
@@ -61,7 +58,16 @@ thead{
 
 }
 
+.ui-datepicker {
+   background: #f4c242;
+   border: 1px solid #555;
+   color: black;
+}
+
+
 tr:nth-child(even){
     background-color: #dddddd;
 }
+
+
 

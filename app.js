@@ -21,7 +21,7 @@ $(document).ready(function(){
     formData["sku"] = $("#sku").val();
     formData["department"] = $("#department").val();
     formData["quantity"] = $("#item-quantity").val();
-    formData["dateReceived"] = $("#date-received").val();
+    formData["dateReceived"] = $("#datepicker").val();
     return formData;
   }
 
@@ -48,7 +48,7 @@ $(document).ready(function(){
     $("#sku").val("");
     $("#department").val("");
     $("#item-quantity").val("");
-    $("#date-received").val("");
+    $("#datepicker").val("");
     selectedRow = null;
   }
 
@@ -58,7 +58,7 @@ $(document).ready(function(){
     $("#sku").val(selectedRow.cells[1].innerHTML);
     $("#department").val(selectedRow.cells[2].innerHTML);
     $("#item-quantity").val(selectedRow.cells[3].innerHTML);
-    $("#date-received").val(selectedRow.cells[4].innerHTML);
+    $("#datepicker").val(selectedRow.cells[4].innerHTML);
   }
 
    function updateRow(data){ //updates the selected row values

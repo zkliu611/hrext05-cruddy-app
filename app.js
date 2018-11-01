@@ -96,15 +96,20 @@ $(document).ready(function(){
   });
 
   $("tbody").on("click", "#edit", function(){
-    editRow(this);
     var index = this.parentElement.parentElement.rowIndex - 1;
+    editRow(this);
     dataArray = JSON.parse(localStorage.inventory);
     dataArray.splice(index, 1);
     localStorage.setItem("inventory", JSON.stringify(dataArray))
   });
 
   $("tbody").on("click", "#delete", function(){
+    var index = this.parentElement.parentElement.rowIndex -1;
+    console.log(index)
     deleteRow(this);
+    dataArray = JSON.parse(localStorage.inventory);
+    dataArray.splice(index, 1);
+    localStorage.setItem("inventory", JSON.stringify(dataArray))
   });
 
 

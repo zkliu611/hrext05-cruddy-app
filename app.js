@@ -39,15 +39,8 @@ $(document).ready(function(){
     cell3.innerHTML = data.department;
     cell4.innerHTML = data.quantity;
     cell5.innerHTML = data.dateReceived; 
+    //add edit/delete button at end of each row 
     cell6.innerHTML = '<button id="edit">Edit</button><button id="delete">Delete</button>';
-  }
-
-  function updateRow(data){ //updates the selected row values
-    selectedRow.cells[0].innerHTML = data.itemName;
-    selectedRow.cells[1].innerHTML = data.sku;
-    selectedRow.cells[2].innerHTML = data.department;
-    selectedRow.cells[3].innerHTML = data.quantity;
-    selectedRow.cells[4].innerHTML = data.dateReceived;
   }
 
   function resetForm() { // resets the input form after data is read and stored
@@ -66,6 +59,14 @@ $(document).ready(function(){
     $("#department").val(selectedRow.cells[2].innerHTML);
     $("#item-quantity").val(selectedRow.cells[3].innerHTML);
     $("#date-received").val(selectedRow.cells[4].innerHTML);
+  }
+
+   function updateRow(data){ //updates the selected row values
+    selectedRow.cells[0].innerHTML = data.itemName;
+    selectedRow.cells[1].innerHTML = data.sku;
+    selectedRow.cells[2].innerHTML = data.department;
+    selectedRow.cells[3].innerHTML = data.quantity;
+    selectedRow.cells[4].innerHTML = data.dateReceived;
   }
 
   function deleteRow(row) { //deletes current row, and remove the data from localstorage
@@ -120,28 +121,5 @@ $(document).ready(function(){
     index = this.parentElement.parentElement.rowIndex -1;
     deleteRow(this);
   });
-
-
-
-
-  // console.log("before\n", window.localStorage);
-
-  // // add event listener
-  // $(".add-text-btn").on("click", function(){
-  //   $(".show-text").empty();
-  //   var curTextValue = $('#theKey').val(); // reading from <input>
-  //   var curKeyValue = "theKey"; // change to dynamic key?
-  //   localStorage.setItem(curKeyValue, curTextValue);
-  //   $(".show-text").append(curTextValue);
-  // });
-
-  // // remove item from app
-
-  // // listen for click event (del)
-  // $(".clear-cache-btn").on("click", function(){
-  //   // clear local storage
-  //   localStorage.clear();
-  //   $(".show-text").empty();
-  // });
 
 });

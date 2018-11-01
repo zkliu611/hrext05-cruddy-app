@@ -15,6 +15,8 @@ $(document).ready(function(){
 
   var selectedRow = null;
 
+  var index;
+
   function readFormData() {
     var formData = {};
     formData["itemName"] = $("#item-name").val();
@@ -70,6 +72,9 @@ $(document).ready(function(){
 
   function deleteRow(row) {
     if (confirm("Are you sure to delete this?")) {
+      dataArray = JSON.parse(localStorage.inventory);
+      dataArray.splice(index, 1);
+      localStorage.setItem("inventory", JSON.stringify(dataArray))
       selectedRow = row.parentElement.parentElement;
       selectedRow.remove();
       selectedRow = null;
@@ -87,29 +92,26 @@ $(document).ready(function(){
       dataArray.push(formData);
       localStorage.setItem("inventory", JSON.stringify(dataArray))
     }else{
+      dataArray = JSON.parse(localStorage.inventory);
+      dataArray.splice(index, 1);
+      localStorage.setItem("inventory", JSON.stringify(dataArray))
       updateRow(formData);
       dataArray = JSON.parse(localStorage.inventory);
       dataArray.push(formData);
       localStorage.setItem("inventory", JSON.stringify(dataArray))
+      location.reload()
     }
     resetForm();
   });
 
   $("tbody").on("click", "#edit", function(){
-    var index = this.parentElement.parentElement.rowIndex - 1;
+    index = this.parentElement.parentElement.rowIndex - 1;
     editRow(this);
-    dataArray = JSON.parse(localStorage.inventory);
-    dataArray.splice(index, 1);
-    localStorage.setItem("inventory", JSON.stringify(dataArray))
   });
 
   $("tbody").on("click", "#delete", function(){
-    var index = this.parentElement.parentElement.rowIndex -1;
-    console.log(index)
+    index = this.parentElement.parentElement.rowIndex -1;
     deleteRow(this);
-    dataArray = JSON.parse(localStorage.inventory);
-    dataArray.splice(index, 1);
-    localStorage.setItem("inventory", JSON.stringify(dataArray))
   });
 
 

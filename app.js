@@ -115,17 +115,16 @@ $(document).ready(function(){
       insertNewRow(formData);
       dataArray = JSON.parse(localStorage.inventory);
       dataArray.push(formData);
-      localStorage.setItem("inventory", JSON.stringify(dataArray))
+      localStorage.setItem("inventory", JSON.stringify(dataArray));
     }else{ //for editing existing entry 
       //first update the row values
       updateRow(formData);
       //then remove old data and place new data back into localstorage
       dataArray = JSON.parse(localStorage.inventory);
       dataArray.splice(index, 1, formData);
-      localStorage.setItem("inventory", JSON.stringify(dataArray))
+      localStorage.setItem("inventory", JSON.stringify(dataArray));
+      $(".add-item").text("Add To Inventory");
 
-      //refresh page after edit
-      // location.reload()
     }
     resetForm(); //clear out input form
   });

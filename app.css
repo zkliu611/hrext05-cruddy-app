@@ -1,22 +1,31 @@
 
+body{
+  background-color: #e5fcb0;
+}
 
 h1{
   background-color: white;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 27%;
+  margin-right: 27%;
   font-size: 50px;
   font-style: italic;
+
 }
 
-h2{
-  font-size: 30px;
-  text-align: center;
-}
-
-.input-form{
+.input-form {
   text-align: center;
   padding: 5px;
   margin: 5px;
+}
+
+.search-form {
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+}
+
+#search{
+  width: 200px;
 }
 
 label{
@@ -27,6 +36,12 @@ label{
   padding: 5px;
   margin-right: 45%;
   margin-left: 45%;
+  background-color: #ffcd63;
+}
+
+.search-btn{
+  padding: 5px;
+  margin-left: 5px;
   background-color: #ffcd63;
 }
 
@@ -43,8 +58,8 @@ input[type=text]{
 .list{
   margin-top: 20px;
   margin-bottom: 50px;
-  margin-left: 22%;
-  margin-right: 22%;
+  margin-left: auto;
+  margin-right: auto;
   padding: 10px;
 }
 
@@ -70,7 +85,7 @@ thead{
    border: 1px solid #555;
    color: black;
    margin-left: 60%;
-   width: 250px;
+   width: 260px;
 }
 
 
@@ -79,6 +94,7 @@ tr:nth-child(even){
 }
 
 .img{
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -89,4 +105,10 @@ label {
 
 .ui-helper-hidden-accessible{
     display: none;
+    margin-bottom: 100px;
+}
+
+.msg{
+  margin-bottom: 50px;
+  text-align: center;
 }

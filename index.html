@@ -8,22 +8,21 @@
     <script src="app.js"></script>
     <link rel="stylesheet" href="app.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    
-     <script>
+    <script>
       $( function() {
         $( "#datepicker" ).datepicker();
       });
-     </script>
-     <script>
+    </script>
+    <script>
       $( function() {
         $( document ).tooltip();
       } );
-     </script>
-   <!--   <script>
+    </script>
+   <!--  <script>
       $( function() {
         $( "#department" ).selectmenu();
       });
-     </script> -->
+    </script> -->
   </head>
   <body>
 
@@ -41,7 +40,7 @@
 
           <div>
               <label>Item SKU</label>
-              <input type="text" id="sku" placeholder="Enter SKU #" title="The SKU is an unique 8 digits number">
+              <input type="text" id="sku" placeholder="Enter SKU #" title="The SKU is an unique 8 digit number">
           </div>
 
          <!--  code for select menu, need to fix CSS to display properly.   -->        
@@ -57,7 +56,7 @@
 
           <div>
               <label>Department</label>
-              <input type="text" id="department" placeholder="Enter Department" title='Select "Perishable", "Grooming", "Gifts for Dogs", or "Gifts for Human"'>
+              <input type="text" id="department" placeholder="Enter Department" title='Select "Perishable", "Grooming", "Gifts for Corgi", or "Gifts for Human"'>
           </div>
                     
           <div>
@@ -91,6 +90,15 @@
           </tbody>
 
       </table>
+
+      <div class="msg"></div>
+
+      <div class="search-form">
+          <label>Search Inventory</label>
+          <input type="text" id="search" placeholder="Enter SKU # to Search">
+          <button class="search-btn">Search</button>
+      </div>
+    
 
       <div class="img"> 
         <img src="corgi2.jpg"><br>

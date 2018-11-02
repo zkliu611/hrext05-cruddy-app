@@ -59,6 +59,7 @@ $(document).ready(function(){
     $("#department").val(selectedRow.cells[2].innerHTML);
     $("#item-quantity").val(selectedRow.cells[3].innerHTML);
     $("#datepicker").val(selectedRow.cells[4].innerHTML);
+    $(".add-item").text("Update Inventory");
   }
 
    function updateRow(data){ //updates the selected row values

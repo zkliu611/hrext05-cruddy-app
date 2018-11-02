@@ -8,17 +8,28 @@
     <script src="app.js"></script>
     <link rel="stylesheet" href="app.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
      <script>
       $( function() {
         $( "#datepicker" ).datepicker();
       });
      </script>
+     <script>
+      $( function() {
+        $( document ).tooltip();
+      } );
+     </script>
+   <!--   <script>
+      $( function() {
+        $( "#department" ).selectmenu();
+      });
+     </script> -->
   </head>
   <body>
 
       <h1>
           <img src="corgi1.jpg">
-          The CorGeek Gift Shop Inventory 
+          The CorGeek Gift Shop 
       </h1>
 
       <form class="input-form">
@@ -30,22 +41,33 @@
 
           <div>
               <label>Item SKU</label>
-              <input type="text" id="sku" placeholder="Enter SKU #">
+              <input type="text" id="sku" placeholder="Enter SKU #" title="The SKU is an unique 8 digits number">
           </div>
-                    
+
+         <!--  code for select menu, need to fix CSS to display properly.   -->        
+       <!--    <fieldset>
+            <label for="department">Department</label>
+            <select name="department" id="department">
+               <option>Perishable</option>
+               <option>Grooming</option>
+               <option>Gifts for Human</option>
+               <option>Gifts for Dogs</option>
+            </select>
+          </fieldset> -->
+
           <div>
               <label>Department</label>
-              <input type="text" id="department" placeholder="Enter Department">
+              <input type="text" id="department" placeholder="Enter Department" title='Select "Perishable", "Grooming", "Gifts for Dogs", or "Gifts for Human"'>
           </div>
                     
           <div>
               <label>Quantity</label>
-              <input type="text" id="item-quantity" placeholder="Enter Quantity">
+              <input type="text" id="item-quantity" placeholder="Enter Quantity" title="Enter quanity for each individual units">
           </div>
 
           <div>
               <label>Date Received</label>
-              <input type="text" id="datepicker" placeholder="Enter DD/MM/YYYY">
+              <input type="text" id="datepicker" placeholder="Select or Enter Date DD/MM/YYYY" title="Use datepicker or enter date manually">
           </div>
 
       </form>
@@ -69,6 +91,11 @@
           </tbody>
 
       </table>
+
+      <div class="img"> 
+        <img src="corgi2.jpg"><br>
+        <spam>&copy CorGeek Gift Shop 2018</spam>
+      </div>
     
   </body>
 </html>

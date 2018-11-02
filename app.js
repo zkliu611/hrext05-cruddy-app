@@ -85,6 +85,27 @@ $(document).ready(function(){
     }
   }
 
+  // function sort(){
+  //   console.log(this is working);
+  // }
+
+  $(".search-btn").on("click", function(){
+    var search = $("#search").val();
+    dataArray = JSON.parse(localStorage.inventory);
+    $("tbody").html("");
+    $(".msg").html("");
+    var result = false;
+    for (var i = 0; i< dataArray.length; i++){
+      if (dataArray[i].sku === search){
+        insertNewRow(dataArray[i]);
+        result = true;
+      }
+    }
+    if (result === false){
+      $(".msg").html("No record found for SKU # " + search);
+    }
+  });
+
   $(".add-item").on("click", function(){ 
     var formData = readFormData();
     //for adding new entry
@@ -94,21 +115,15 @@ $(document).ready(function(){
       dataArray.push(formData);
       localStorage.setItem("inventory", JSON.stringify(dataArray))
     }else{ //for editing existing entry 
-      //first remove the data from localstorage, 
-      dataArray = JSON.parse(localStorage.inventory);
-      dataArray.splice(index, 1);
-      localStorage.setItem("inventory", JSON.stringify(dataArray))
-
-      //then updates the row values
+      //first update the row values
       updateRow(formData);
-
-      //place new data back into localstorage
+      //then remove old data and place new data back into localstorage
       dataArray = JSON.parse(localStorage.inventory);
-      dataArray.push(formData);
+      dataArray.splice(index, 1, formData);
       localStorage.setItem("inventory", JSON.stringify(dataArray))
 
       //refresh page after edit
-      location.reload()
+      // location.reload()
     }
     resetForm(); //clear out input form
   });

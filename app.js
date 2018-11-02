@@ -71,17 +71,19 @@ $(document).ready(function(){
   }
 
   function deleteRow(row) { //deletes current row, and remove the data from localstorage
-    if (confirm("Are you sure to delete this?")) {
-      dataArray = JSON.parse(localStorage.inventory);
-      dataArray.splice(index, 1);
-      localStorage.setItem("inventory", JSON.stringify(dataArray))
+    if (confirm("Are you sure you want to delete this?")) {
+      if (confirm("WARNING: YOU CANNOT UNDO ONCE YOU DELETE ITEM")) {
+        dataArray = JSON.parse(localStorage.inventory);
+        dataArray.splice(index, 1);
+        localStorage.setItem("inventory", JSON.stringify(dataArray))
       //delete row using jquery
-      selectedRow = row.parentElement.parentElement;
-      selectedRow.remove();
-      selectedRow = null;
-      // delete row without using jquery
+        selectedRow = row.parentElement.parentElement;
+        selectedRow.remove();
+        selectedRow = null;
+        // delete row without using jquery
       // var i = row.parentNode.parentNode.rowIndex;
       // document.getElementById("item-ist").deleteRow(i);
+      }
     }
   }
 

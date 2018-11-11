@@ -91,7 +91,7 @@ $(document).ready(function(){
   //   console.log(this is working);
   // }
 
-  $(".search-btn").on("click", function(){
+  $(".search-btn").on("click", function(){//function for search
     var search = $("#search").val();
     dataArray = JSON.parse(localStorage.inventory);
     $("tbody").html("");
@@ -103,7 +103,7 @@ $(document).ready(function(){
         result = true;
       }
     }
-    if (result === false){
+    if (result === false){//if no record found
       $(".msg").html("No record found for SKU # " + search);
     }
   });
